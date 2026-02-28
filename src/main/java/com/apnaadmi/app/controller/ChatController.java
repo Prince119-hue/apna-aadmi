@@ -2,11 +2,13 @@ package com.apnaadmi.app.controller;
 
 import com.apnaadmi.app.entity.Lead;
 import com.apnaadmi.app.repository.LeadRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-//@RestController
+@Profile("db")   // only loads when DB profile is active
+@RestController
 @RequestMapping("/api/chat")
 @CrossOrigin("*")
 public class ChatController {
