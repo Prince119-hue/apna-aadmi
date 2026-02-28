@@ -23,8 +23,7 @@ public class SecurityConfig {
                                 "/",
                                 "/login",
                                 "/register",
-                                "/services",
-                                "/services/**",
+                                "/services/**",   // ← allow all service pages
                                 "/contact",
                                 "/api/chat",
                                 "/css/**",
@@ -35,11 +34,11 @@ public class SecurityConfig {
                         // 🔒 ADMIN
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 
-                        // 👤 USER
+                        // 🔐 PROTECTED ACTIONS ONLY (booking etc)
                         .requestMatchers("/user/**").hasRole("USER")
 
-                        // 🔐 EVERYTHING ELSE
-                        .anyRequest().authenticated()
+                        // everything else
+                        .anyRequest().permitAll()
                 )
 
                 .formLogin(form -> form
