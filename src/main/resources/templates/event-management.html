@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Management | Apna Aadmi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body{
+            font-family:'Poppins',sans-serif;
+            background:#06271d;
+            color:white;
+        }
+
+        .navbar{
+            background:#0B3D2E;
+            box-shadow:0 4px 25px rgba(0,0,0,.35);
+        }
+
+        .hero{
+            padding:120px 0 80px;
+            background:linear-gradient(135deg,#06271d,#0B3D2E,#06271d);
+            text-align:center;
+        }
+
+        .hero h1{
+            font-size:3rem;
+            font-weight:700;
+        }
+
+        .glass-card{
+            background:rgba(255,255,255,0.08);
+            border-radius:22px;
+            padding:28px;
+            border:1px solid rgba(255,255,255,0.15);
+            backdrop-filter:blur(12px);
+            height:100%;
+        }
+
+        .cta-btn{
+            background:#1effa3;
+            border:none;
+            padding:14px 36px;
+            border-radius:30px;
+            font-weight:600;
+            color:#06271d;
+            transition:.3s;
+        }
+
+        .cta-btn:hover{
+            transform:scale(1.05);
+            box-shadow:0 0 25px rgba(30,255,163,.6);
+        }
+
+        footer{
+            background:#0B3D2E;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark fixed-top">
+    <div class="container d-flex justify-content-between">
+        <a class="navbar-brand fw-bold fs-4" href="/">Apna Aadmi</a>
+        <div>
+            <a href="/" class="btn btn-outline-light btn-sm me-2">Home</a>
+            <a href="/services" class="btn btn-outline-light btn-sm me-2">Services</a>
+            <a href="/contact" class="btn btn-outline-light btn-sm">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <h1>Event Management</h1>
+        <p class="lead mt-3">
+            Weddings, family functions, corporate & private events —
+            fully planned, managed, and executed by us.
+        </p>
+        <a href="/contact" class="cta-btn mt-4 d-inline-block">Plan My Event</a>
+    </div>
+</section>
+
+<!-- CONTENT -->
+<section class="py-5">
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="glass-card">
+                    <h4>Wedding Events</h4>
+                    <p>
+                        Complete wedding planning including venue coordination,
+                        vendors, logistics, guest management, and on-ground execution.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass-card">
+                    <h4>Family Functions</h4>
+                    <p>
+                        Engagements, birthdays, anniversaries, pooja, receptions —
+                        we handle everything so you enjoy stress-free moments.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass-card">
+                    <h4>Corporate & Private Events</h4>
+                    <p>
+                        Meetings, parties, launches, gatherings —
+                        smooth coordination with professional execution.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-5">
+            <h5 class="mb-3">What We Manage</h5>
+            <p>
+                Venue • Vendors • Catering • Decoration • Staff • Scheduling • Guest Coordination
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<footer class="py-4 text-center">
+    <p class="mb-0">© 2026 Apna Aadmi</p>
+</footer>
+
+</body>
+</html>
