@@ -1,23 +1,17 @@
 package com.apnaadmi.app.controller;
 
 import com.apnaadmi.app.entity.User;
-import com.apnaadmi.app.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-//@Controller
+import java.util.*;
+
+@Controller
 public class AuthController {
 
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
-
-    public AuthController(UserRepository userRepository,
-                          BCryptPasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    // Temporary in-memory users (NO DATABASE)
+    private final Map<String, User> users = new HashMap<>();
 
     // LOGIN PAGE
     @GetMapping("/login")
@@ -38,7 +32,7 @@ public class AuthController {
                                @RequestParam String password,
                                Model model) {
 
-        if (userRepository.findByEmail(email).isPresent()) {
+        if (users.containsKey(email)) {
             model.addAttribute("error", "Email already registered");
             return "register";
         }
@@ -46,10 +40,10 @@ public class AuthController {
         User user = new User();
         user.setName(name);
         user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(password); // plain text temporary
         user.setRole("ROLE_USER");
 
-        userRepository.save(user);
+        users.put(email, user);
 
         model.addAttribute("success", "Registration successful. Please login.");
         return "login";

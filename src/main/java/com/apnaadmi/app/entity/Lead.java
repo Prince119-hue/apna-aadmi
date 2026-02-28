@@ -1,7 +1,5 @@
 package com.apnaadmi.app.entity;
 
-import jakarta.persistence.*;
-
 @Entity
 @Table(name = "apna_aadmi_leads")
 public class Lead {
