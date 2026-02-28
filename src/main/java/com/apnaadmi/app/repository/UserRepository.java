@@ -1,10 +1,6 @@
 package com.apnaadmi.app.repository;
 
-import com.apnaadmi.app.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+// TEMP DISABLED — DATABASE NOT ENABLED
 
-import java.util.Optional;
-
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
+public interface UserRepository {
 }

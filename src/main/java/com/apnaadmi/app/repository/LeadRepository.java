@@ -1,9 +1,7 @@
 package com.apnaadmi.app.repository;
 
-import com.apnaadmi.app.entity.Lead;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+// TEMP DISABLED UNTIL DATABASE ENABLED
+// This file will be restored when DB profile is active
 
-@Repository
-public interface LeadRepository extends JpaRepository<Lead, Long> {
+public interface LeadRepository {
 }
