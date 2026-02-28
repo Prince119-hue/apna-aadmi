@@ -2,6 +2,7 @@ package com.apnaadmi.app.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.*;
 
 @RestController
@@ -9,16 +10,19 @@ import java.util.*;
 @CrossOrigin("*")
 public class ChatController {
 
-    // Temporary in-memory session store
-    private final Map<String, Map<String, String>> sessions = new HashMap<>();
+    // Thread-safe session store
+    private final Map<String, Map<String, String>> sessions = new ConcurrentHashMap<>();
 
     @PostMapping
     public Map<String, String> chat(@RequestBody Map<String, String> payload) {
 
-        String msg = payload.get("message").toLowerCase();
+        String msg = Optional.ofNullable(payload.get("message"))
+                .orElse("")
+                .toLowerCase();
+
         String sessionId = payload.getOrDefault("sessionId", "default");
 
-        sessions.putIfAbsent(sessionId, new HashMap<>());
+        sessions.putIfAbsent(sessionId, new ConcurrentHashMap<>());
         Map<String, String> data = sessions.get(sessionId);
 
         String reply;
@@ -43,12 +47,11 @@ public class ChatController {
         }
 
         else if (!data.containsKey("phone")) {
-            if (!msg.matches("[0-9]{10}")) {
+            if (!msg.matches("\\d{10}")) {
                 reply = "Please enter a valid 10-digit phone number.";
             } else {
                 data.put("phone", msg);
 
-                // TEMPORARY: Just simulate saving
                 System.out.println("New Lead Captured:");
                 System.out.println(data);
 

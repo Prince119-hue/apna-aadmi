@@ -1,5 +1,11 @@
 package com.apnaadmi.app.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 @Entity
 @Table(name = "apna_aadmi_leads")
 public class Lead {

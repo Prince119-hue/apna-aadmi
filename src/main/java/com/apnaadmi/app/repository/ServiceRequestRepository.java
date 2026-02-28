@@ -1,7 +1,7 @@
 package com.apnaadmi.app.repository;
 
 import com.apnaadmi.app.entity.ServiceRequest;
-import org.apache.catalina.User;
+import com.apnaadmi.app.entity.User;   // ✅ CORRECT IMPORT
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

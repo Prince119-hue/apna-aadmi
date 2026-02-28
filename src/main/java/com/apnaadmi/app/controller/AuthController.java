@@ -1,6 +1,7 @@
 package com.apnaadmi.app.controller;
 
 import com.apnaadmi.app.entity.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,22 +11,23 @@ import java.util.*;
 @Controller
 public class AuthController {
 
-    // Temporary in-memory users (NO DATABASE)
     private final Map<String, User> users = new HashMap<>();
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    // LOGIN PAGE
+    public AuthController(BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-    // REGISTER PAGE
     @GetMapping("/register")
     public String register() {
         return "register";
     }
 
-    // REGISTER SUBMIT
     @PostMapping("/register")
     public String registerUser(@RequestParam String name,
                                @RequestParam String email,
@@ -40,7 +42,7 @@ public class AuthController {
         User user = new User();
         user.setName(name);
         user.setEmail(email);
-        user.setPassword(password); // plain text temporary
+        user.setPassword(passwordEncoder.encode(password)); // ✅ FIXED
         user.setRole("ROLE_USER");
 
         users.put(email, user);
