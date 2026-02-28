@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
-@Controller
+//@Controller
 @RequestMapping("/services")
 public class ServiceController {
 
