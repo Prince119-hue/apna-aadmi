@@ -1,26 +1,16 @@
 package com.apnaadmi.app.controller;
 
-import com.apnaadmi.app.entity.Lead;
-import com.apnaadmi.app.repository.LeadRepository;
-import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@Profile("db")   // only loads when DB profile is active
 @RestController
 @RequestMapping("/api/chat")
 @CrossOrigin("*")
 public class ChatController {
 
-    private final LeadRepository leadRepository;
-
     // Temporary in-memory session store
     private final Map<String, Map<String, String>> sessions = new HashMap<>();
-
-    public ChatController(LeadRepository leadRepository) {
-        this.leadRepository = leadRepository;
-    }
 
     @PostMapping
     public Map<String, String> chat(@RequestBody Map<String, String> payload) {
@@ -58,13 +48,10 @@ public class ChatController {
             } else {
                 data.put("phone", msg);
 
-                Lead lead = new Lead();
-                lead.setService(data.get("service"));
-                lead.setGuests(data.get("guests"));
-                lead.setMembers(data.get("members"));
-                lead.setPhone(data.get("phone"));
+                // TEMPORARY: Just simulate saving
+                System.out.println("New Lead Captured:");
+                System.out.println(data);
 
-                leadRepository.save(lead);
                 sessions.remove(sessionId);
 
                 reply = "Thank you! 🎉 Our team will contact you shortly.";
