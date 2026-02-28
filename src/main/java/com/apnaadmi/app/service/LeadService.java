@@ -1,19 +1,18 @@
 package com.apnaadmi.app.service;
 
 import com.apnaadmi.app.entity.Lead;
-import com.apnaadmi.app.repository.LeadRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class LeadService {
 
-    private final LeadRepository leadRepository;
-
-    public LeadService(LeadRepository leadRepository) {
-        this.leadRepository = leadRepository;
-    }
+    private final List<Lead> leads = new ArrayList<>();
 
     public Lead saveLead(Lead lead) {
-        return leadRepository.save(lead);
+        leads.add(lead);
+        return lead;
     }
 }
