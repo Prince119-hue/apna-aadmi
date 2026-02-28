@@ -2,10 +2,17 @@ package com.apnaadmi.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
 
-@SpringBootApplication
-@ComponentScan(basePackages = "com.apnaadmi.app")
+@SpringBootApplication(
+        exclude = {
+                DataSourceAutoConfiguration.class,
+                HibernateJpaAutoConfiguration.class,
+                JpaRepositoriesAutoConfiguration.class
+        }
+)
 public class ApnaAadmiApplication {
 
     public static void main(String[] args) {
