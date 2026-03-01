@@ -1,10 +1,12 @@
-package com.apnaadmi.app.security;
+package com.apnaadmi.app.config;
 
 import com.apnaadmi.app.entity.User;
 import com.apnaadmi.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -20,10 +22,10 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found"));
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getEmail())
-                .password(user.getPassword())
-                .roles("USER")
-                .build();
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                new ArrayList<>()
+        );
     }
 }
