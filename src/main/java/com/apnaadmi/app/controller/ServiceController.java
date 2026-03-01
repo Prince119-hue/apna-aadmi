@@ -27,4 +27,10 @@ public class ServiceController {
     public String completeResponsibility() {
         return "complete-responsibility";
     }
+
+    // NEW SERVICE
+    @GetMapping("/daily-services")
+    public String dailyServices() {
+        return "daily-services";
+    }
 }
