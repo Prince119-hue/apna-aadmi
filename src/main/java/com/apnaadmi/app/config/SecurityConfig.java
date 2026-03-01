@@ -1,14 +1,10 @@
 package com.apnaadmi.app.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
@@ -16,47 +12,17 @@ public class SecurityConfig {
 
         http
                 .csrf(csrf -> csrf.disable())
-
                 .authorizeHttpRequests(auth -> auth
-                        // ✅ PUBLIC PAGES
-                        .requestMatchers(
-                                "/",
-                                "/login",
-                                "/register",
-                                "/services/**",   // ← allow all service pages
-                                "/contact",
-                                "/api/chat",
-                                "/css/**",
-                                "/js/**",
-                                "/img/**"
-                        ).permitAll()
-
-                        // 🔒 ADMIN
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-
-                        // 🔐 PROTECTED ACTIONS ONLY (booking etc)
-                        .requestMatchers("/user/**").hasRole("USER")
-
-                        // everything else
-                        .anyRequest().permitAll()
+                        .requestMatchers("/", "/services/**", "/contact", "/register", "/css/**", "/img/**").permitAll()
+                        .anyRequest().authenticated()
                 )
-
-                .formLogin(form -> form
+                .formLogin(login -> login
                         .loginPage("/login")
-                        .defaultSuccessUrl("/post-login", true)
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
-
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/")
-                        .permitAll()
-                );
+                .logout(logout -> logout.permitAll());
 
         return http.build();
-    }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }
