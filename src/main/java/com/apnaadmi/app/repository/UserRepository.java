@@ -1,6 +1,8 @@
 package com.apnaadmi.app.repository;
 
-// TEMP DISABLED — DATABASE NOT ENABLED
+import org.springframework.stereotype.Repository;
 
+// TEMP DISABLED — DATABASE NOT ENABLED
+@Repository
 public interface UserRepository {
 }

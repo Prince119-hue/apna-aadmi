@@ -1,6 +1,8 @@
 package com.apnaadmi.app.repository;
 
-// TEMP DISABLED — DATABASE NOT ENABLED YET
+import org.springframework.stereotype.Repository;
 
+// TEMP DISABLED — DATABASE NOT ENABLED YET
+@Repository
 public interface ServiceRequestRepository {
 }
